@@ -67,6 +67,6 @@ class Solution:
 if __name__ == "__main__":
   temperatures = sys.stdin.read().split()
   temperatures = list(map(int, temperatures))
-  print(Solution.dailyTemperatures(temperatures))
+  print(Solution().dailyTemperatures(temperatures))
 ```
      
