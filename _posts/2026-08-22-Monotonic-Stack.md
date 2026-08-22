@@ -72,9 +72,10 @@ if __name__ == "__main__":
 
 ### 42. 接雨水
 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
-**示例1：**
 
 <img width="412" height="161" alt="image" src="https://github.com/user-attachments/assets/dae08ca8-ea70-44c2-9022-11de8f1a2285" />
+
+**示例1：**
 
 输入：
 ```
@@ -118,6 +119,80 @@ if __name__ == '__main__':
     height = list(map(int, height))
     print(trap(height))
 ```
+
+### 84. 柱状图中最大的矩形
+给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
+
+求在该柱状图中，能够勾勒出来的矩形的最大面积。
+**示例1：**
+
+<img width="522" height="242" alt="image" src="https://github.com/user-attachments/assets/294d38c1-4680-468c-9a67-5ec621db99b5" />
+
+输入：
+
+```
+heights = [2,1,5,6,2,3]
+```
+
+输出：
+
+```
+10
+```
+**示例2：**
+
+<img width="202" height="362" alt="image" src="https://github.com/user-attachments/assets/29206806-dd56-4848-b233-cdb3bf0e610d" />
+
+输入：
+
+```
+heights = [2,4]
+```
+
+输出：
+
+```
+4
+```
+**题目分析：**
+
+对于每一个元素i而言，如果左边第一个比它小的元素索引是left_i， 右边第一个比他小的元素索引时right_i， 那么以元素i为高度的最大矩形面积为 (right_i - left_i - 1) * heights[i]， 所以我们要找的就是每一个元素i的左边第一个比它小的元素索引以及右边第一个比它小的元素索引，这样我们用单调递增栈来进行查找。
+
+**代码如下：**
+
+```python
+import sys
+def findmaxarea(heights):
+    res = 0
+    n = len(heights)
+    left = [-1] * n
+    right = [n] * n
+    stack = []
+    for i in range(n):
+        while stack and heights[stack[-1]] > heights[i]:
+            right[stack[-1]] = i
+            stack.pop()
+        stack.append(i)
+    stack = []
+    for i in range(n - 1, -1, -1):
+        while stack and heights[stack[-1]] > heights[i]:
+            left[stack[-1]] = i
+            stack.pop()
+        stack.append(i)
+    for i in range(n):
+        e = (right[i] - left[i] - 1) * heights[i]
+        if e > res:
+            res = e
+    return res
+
+if __name__ == "__main__":
+    heights = sys.stdin.read().split()
+    heights = list(map(int, heights))
+    print(findmaxarea(heights))
+```
+
+
+
 
 
      
