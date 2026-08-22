@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "单调栈Monotonic-Stack"
+title: "单调栈 Monotonic-Stack"
 date: 2026-08-22 00:30:00 +0800
 categories: [算法]
 tags: [LeetCode, hot-100]
@@ -113,7 +113,7 @@ def trap(height):
             bottom = stack.pop() #记录一下底层
             if not stack:
                 continue  #如果弹出之后栈为空了那就直接进行下一轮
-            res += (min(height[i], height[stack[-1]]) - height[bottom]) * (i - stack[-1] - 1) 这一层接的雨水是长乘宽
+            res += (min(height[i], height[stack[-1]]) - height[bottom]) * (i - stack[-1] - 1) #这一层接的雨水是长乘宽
     return res
 if __name__ == '__main__':
     height = sys.stdin.read().split()
