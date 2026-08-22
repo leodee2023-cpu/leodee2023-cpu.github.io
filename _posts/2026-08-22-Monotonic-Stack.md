@@ -73,9 +73,10 @@ if __name__ == "__main__":
 ### 42. 接雨水
 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
 
+**示例1：**
+
 <img width="412" height="161" alt="image" src="https://github.com/user-attachments/assets/dae08ca8-ea70-44c2-9022-11de8f1a2285" />
 
-**示例1：**
 
 输入：
 ```
