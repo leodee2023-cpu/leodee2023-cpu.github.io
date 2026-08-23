@@ -233,3 +233,4 @@ def mincostclimbstairs(cost):
 if __name__ == "__main__":
     cost = list(map(int, sys.stdin.read().split()))
     print(mincostclimbstairs(cost))
+```
