@@ -3,7 +3,7 @@ layout: post
 title: "我的第一篇刷题总结"
 date: 2026-08-22 20:00:00 +0800
 categories: [刷题]
-tags: [算法, LeetCode]
+tags: [LeetCode hot-100, 卡码训练营]
 ---
 
 ## 今天刷了什么题

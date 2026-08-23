@@ -2,8 +2,8 @@
 layout: post
 title: "单调栈 Monotonic-Stack"
 date: 2026-08-22 00:30:00 +0800
-categories: [算法]
-tags: [LeetCode, hot-100]
+categories: [刷题]
+tags: [LeetCode hot-100, 卡码训练营]
 ---
 
 ## 单调栈总结
