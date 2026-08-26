@@ -31,7 +31,11 @@ tags: [LeetCode hot-100, 卡码训练营]
 1
 ```
 
-**题目分析：** 我们之前做过了一道416. 分割等和子集，这道题其实就是它的一个变种，我们可以将stones分成两个和尽量接近的子集stones1和stones2，那么abs(stones1 - stones2)就是我们要求的结果。我比较习惯用二维dp数组来求解，比较容易理解，我们令背包的最大容量为target = sum(stones) // 2，然后求sum(stones) - 2 * dp[len(stones) - 1][-1]即可.
+**题目分析：** 我们之前做过了一道416. 分割等和子集，这道题其实就是它的一个变种，我们可以将stones分成两个和尽量接近的子集stones1和stones2，
+
+那么abs(stones1 - stones2)就是我们要求的结果。我比较习惯用二维dp数组来求解，比较容易理解，我们令背包的最大容量为target = sum(stones) // 2，
+
+然后求sum(stones) - 2 * dp[len(stones) - 1][-1]即可.
 
 **代码如下：**
 ```python
@@ -99,22 +103,35 @@ if __name__ == "__main__":
 
 这道题和上一道题也是类似的解法，但是比较难想。
 首先，如果存在某种方法让nums计算得到target的话，我们假设存在一个被减数数组a，一个减数数组b，那显然我们有：
+
 sum(a) - sum(b) = target
+
 sum(a) + sum(b) = sum(nums)
+
 我们得到 sum(a) = (target + sum(nums)) / 2
+
 也就是说，如果存在一个sum(a) = (target + sum(nums)) / 2 才能有解。
+
 有了这个前提之后，这个问题就变成了有多少种a数组，它的和等于(target + sum(nums)) / 2，下面我们按照动态规划的五部曲进行分析
 ```
 1. 确定dp数组的下标和含义： 这里我们定义dp[i][j]的含义为，从0 - i 中选择元素，填满容量为j的背包，有多少种填法
 
 2. 确定递推公式： 显然，如果nums[i] > j的话，那么nums[i]就无法放入背包中，dp[i][j] = dp[i - 1][j]
+
 如果nums[i] <= j的话，
+
 nums[i]可以放入背包中，此时就面临着是否要放入背包中的选择，如果nums[i]不放入背包，那显然就有dp[i - 1][j]
+
 种方法填满背包
+
 如果nums[i]放入背包，那就有dp[i - 1][j - nums[i]]种
+
 因此，当nums[i] <= j 的时候，一共有dp[i - 1][j] + dp[i - 1][j - nums[i]]种
 
-3.初始化：当j = 0时比较特殊，不是像之前一样dp[i][0] = 0,因为如果nums中有0元素那还是可以填满的，而且什么都不放也可以视为填满，假设0 - i 种有zeronums个0，那dp[i][0] = 2 ** zeronums
+3.初始化：当j = 0时比较特殊，不是像之前一样dp[i][0] = 0,因为如果nums中有0元素那还是可以填满的，而且什么都不放也可以视为填满，
+
+假设0 - i 种有zeronums个0，那dp[i][0] = 2 ** zeronums
+
 当i = 0时，如果j == nums[0]，dp[0][j] = 1， 否则dp[0][j]就等于0(j > 0)
 
 ```
@@ -208,13 +225,17 @@ if __name__ == "__main__":
 
 ```
 1. dp数组的定义：dp[k][i][j] 从0 ~ k 个元素中选择元素放入容量为i个0，j个1的背包中，元素的最大数量 
+
 2. 递推公式的推导： 
+
 对于第k个元素，假设它的重量为zerosnum， onesnum，那么显然有：
         if zerosnum > i or onesnum > j :
             dp[k][i][j] = dp[k - 1][i][j]
         else:
             dp[k][i][j] = max(dp[k - 1][i][j], dp[k - 1][i - zerosnum][j - onesnum] + 1 )
+
 3.dp数组的初始化；
+
 dp = [[[0] * (n + 1)] for _ in range(m + 1)] for _ in range(len(strs))
 当k为0时，第0个元素的重量为zerosnum, onesnum
 那么我们有dp[0][i][j] = 1, if i >= zerosnum and j >= onesnum
