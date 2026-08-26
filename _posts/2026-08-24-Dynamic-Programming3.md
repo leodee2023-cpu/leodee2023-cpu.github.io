@@ -217,9 +217,10 @@ dp = [[[0] * (n + 1)] for _ in range(m + 1)] for _ in range(len(strs))
 ```
 
 代码如下：
+
 ```python
 import sys
- def solve( strs, m, n):
+def solve( strs, m, n):
 
 dp = [[[0] * (n + 1) for _ in range(m + 1)] for _ in range(len(strs))]
 for i in range(strs[0].count('0'), m + 1):
