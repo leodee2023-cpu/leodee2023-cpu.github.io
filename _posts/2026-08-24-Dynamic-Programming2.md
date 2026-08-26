@@ -118,7 +118,7 @@ dp[j] = max(dp[j], dp[j - weight[i]] + value[i])
 dp = [0] * (n + 1)
 
 
-4. 如何开始遍历： 为了防止重复问题，所以我们对于背包的遍历要采用倒序遍历。为什么二维数组的时候不需要倒序遍历呢，因为二维数组的时候，对于dp[i]这一层的计算都是通过dp[i - 1]来进行的。
+4. 如何开始遍历： 防止同一个物品被多次放入背包，避免 01 背包退化成完全背包，所以我们对于背包的遍历要采用倒序遍历。为什么二维数组的时候不需要倒序遍历呢，因为二维数组的时候，对于dp[i]这一层的计算都是通过dp[i - 1]来进行的。
 遍历如下：
 for i in range(m):
     for j in range(n, weight[i] - 1, -1):
@@ -192,16 +192,16 @@ if __name__ == "__main__":
     data = list(map(int, sys.stdin.readline().strip().split()))
     m = len(data)
     if not data or m < 2:
-        return False
+        print(False)
     target = sum(data)
     if target % 2 != 0:
-        return False
+        print(False)
     target = target // 2
     n = target
     if solve(m, n, data, data) != target:
-        return False
+        print(False)
     else:
-        return True
+        print(True)
 
 
 ```
