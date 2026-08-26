@@ -33,7 +33,7 @@ tags: [LeetCode hot-100, 卡码训练营]
 
 **题目分析：** 我们之前做过了一道416. 分割等和子集，这道题其实就是它的一个变种，我们可以将stones分成两个和尽量接近的子集stones1和stones2，
 
-那么abs(stones1 - stones2)就是我们要求的结果。我比较习惯用二维dp数组来求解，比较容易理解，我们令背包的最大容量为target = sum(stones) // 2，
+那么abs(sum(stones1) - sum(stones2))就是我们要求的结果。我比较习惯用二维dp数组来求解，比较容易理解，我们令背包的最大容量为target = sum(stones) // 2，
 
 然后求sum(stones) - 2 * dp[len(stones) - 1][-1]即可.
 
@@ -104,13 +104,21 @@ if __name__ == "__main__":
 这道题和上一道题也是类似的解法，但是比较难想。
 首先，如果存在某种方法让nums计算得到target的话，我们假设存在一个被减数数组a，一个减数数组b，那显然我们有：
 
+
 sum(a) - sum(b) = target
 
 sum(a) + sum(b) = sum(nums)
 
-我们得到 sum(a) = (target + sum(nums)) / 2
 
-也就是说，如果存在一个sum(a) = (target + sum(nums)) / 2 才能有解。
+可以得到
+
+ sum(a) = (target + sum(nums)) / 2
+
+也就是说，如果存在一个
+
+sum(a) = (target + sum(nums)) / 2 
+
+这道题才能有解。
 
 有了这个前提之后，这个问题就变成了有多少种a数组，它的和等于(target + sum(nums)) / 2，下面我们按照动态规划的五部曲进行分析
 ```
