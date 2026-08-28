@@ -55,7 +55,7 @@ dp[1][4] = max(dp[0][4], dp[1][1] + 物品1 的价值)
 
 不放物品i：背包容量为j，里面不放物品i的最大价值是dp[i - 1][j]。
 
-放物品i：背包空出物品i的容量后，背包容量为j - weight[i]，dp[i][j - weight[i]] 为背包容量为j - weight[i]且不放物品i的最大价值，那么dp[i][j - weight[i]] + value[i] （物品i的价值），就是背包放物品i得到的最大价值
+放物品i：背包空出物品i的容量后，背包容量为j - weight[i]，dp[i][j - weight[i]] 为背包容量为j - weight[i]继续放物品i的最大价值，那么dp[i][j - weight[i]] + value[i] （物品i的价值），就是背包放物品i得到的最大价值
 
 递推公式： dp[i][j] = max(dp[i - 1][j], dp[i][j - weight[i]] + value[i]);
 
@@ -382,6 +382,7 @@ def solve(amount, coins):
 if __name__ == "__main__":
     amount = int(sys.stdin.readline().strip())
     coins = list(map(int, sys.stdin.readline().strip().split()))
+    print(solve(amount, coins))
 ```
 #### 一维数组
 
@@ -548,7 +549,7 @@ def solve(nums, target):
     for j in range(n + 1):
         for i in range(m):
             if j >= nums[i]:
-                dp[j] = dp[j] + dp[j - weight[i]]
+                dp[j] = dp[j] + dp[j - nums[i]]
     return dp[-1]
 
 if __name__ == "__main__":
