@@ -187,7 +187,7 @@ def solve(n, v, weight, value):
             if j < weight[i]:
                 dp[i][j] = dp[i - 1][j]
             else:
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - weight[i] + value[i]])
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - weight[i]] + value[i])
     return dp[-1][-1]
 
 if __name__ == "__main__":
@@ -300,7 +300,7 @@ if __name__ == "__main__":
 输出：
 
 ```
-10
+0
 ```
 
 解释：
@@ -346,7 +346,7 @@ for i in range(len(coins)):
     dp[i][0] = 1
 
 for j in range(1, amount + 1):
-    if j // weight[0]:
+    if j % weight[0] == 0:
         dp[0][j] = 1
 
 4. 遍历顺序
@@ -508,7 +508,7 @@ def solve(nums, target):
     for i in range(m):
         dp[i][0] = 1
     for j in range(n + 1):
-        for i in ragne(1, m):
+        for i in range(1, m):
             if nums[i] > j:
                 dp[i][j] = dp[i - 1][j]
             else:
@@ -545,7 +545,7 @@ def solve(nums, target):
     n = target
     dp = [0] * (n + 1)
     dp[0] = 1
-    for j in range(weight[i], n + 1):
+    for j in range(n + 1):
         for i in range(m):
             if j >= nums[i]:
                 dp[j] = dp[j] + dp[j - weight[i]]
