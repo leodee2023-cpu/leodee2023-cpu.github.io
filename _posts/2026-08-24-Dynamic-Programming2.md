@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "动态规划 Dynamic Programming2"
+title: "动态规划 Dynamic Programming2---01背包问题"
 date: 2026-08-24 14:40:00 +0800
 categories: [刷题]
 tags: [LeetCode hot-100, 卡码训练营]
